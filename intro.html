@@ -1,0 +1,202 @@
+<!DOCTYPE html>
+<html>
+  <title>Telepathy</title>
+<head>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+
+<style>
+* {box-sizing: border-box}
+body {font-family: "Lato", sans-serif;
+}
+
+.tab {
+  float: left;
+  padding-left: 150px;
+  width: 30%;
+  height: 300px;
+}
+
+.tab button {
+  display: block;
+  background-color: inherit;
+  color: black;
+  padding: 22px 16px;
+  width: 100%;
+  border: none;
+  outline: none;
+  text-align: left;
+  cursor: pointer;
+  font-size: 17px;
+}
+
+.header {
+  padding: 7px;
+  text-align: left;
+  background: steelblue;
+  color: white;
+  padding-left: 25px;
+  font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+  font-size: 100%;
+
+}
+
+
+
+.tab button:hover {
+  background-color:cadetblue;
+}
+
+
+.tab button.active {
+  background-color: #ccc;
+
+}
+
+.heading{
+  text-align: center;
+  font-family:Arial, Helvetica, sans-serif;
+  font-size: 25px;
+  color:midnightblue;
+}
+
+.sub{
+text-align: center;
+font-family: Arial, Helvetica, sans-serif;
+font-size: 20px;
+color: black;
+padding-bottom: 50px;
+}
+.button {
+
+width: 25%;
+  padding: 15px 10px;
+  font-size: 24px;
+  text-align: center;
+  cursor: pointer;
+  outline: none;
+  color: #fff;
+  background-color: cornflowerblue;
+  border: none;
+  border-radius: 15px;
+  box-shadow: 0 9px darkslateblue;
+}
+
+.button:hover {background-color:cadetblue}
+
+.button:active {
+  background-color:cornflowerblue;
+  box-shadow: 0 5px darkslateblue;
+  transform: translateY(4px);
+}
+
+
+.tabcontent {
+  float: left;
+  padding: 0px 12px;
+
+  width: 60%;
+  border-left: none;
+  height: 300px;
+  display: none;
+}
+
+
+.clearfix::after {
+  content: "";
+  clear: both;
+  display: table;
+
+}
+</style>
+</head>
+<div class="header">
+
+    <div style = "float:left">
+   
+      <img src = "tele.png">
+    
+    </div>  
+    
+    <div style = "padding-left:6%">
+    <h2>TELEPATHY</h2>
+  </div>
+    </div>
+
+
+</div>
+<body>
+<div class="heading">
+<h2>The Code Editor for Web Learners</h2>
+</div>
+<div class = "sub">
+<p>Telepathy is a Real-time live editor for Students and Educators</p>
+</div>
+<div class="tab">
+  <button class="tablinks" onmouseover="view(event, 'welcome')">Welcome</button>
+  <button class="tablinks" onmouseover="view(event, 'Guide')">Guide</button>
+  <button class="tablinks" onmouseover="view(event, 'about')">About</button>
+</div>
+
+<div id="welcome" class="tabcontent">
+  <h3>Why Telepathy?</h3>
+  <p>An Open-source split-screen live editor for popular web technologies such as HTML, CSS and Javascript. Telepathy Aims to deliver a
+    more interactive experience in learning the basic functions of the web scripting through rapid coding results.
+  </p>
+</div>
+
+<div id="Guide" class="tabcontent">
+  <h3>Features</h3>
+  <p>1. Color Mode - Theming functionality for better editing experience. Supports HTML, CSS and JavaScript.<br>
+  2. Line Numbers - Organize your codes with line numbers to count down your progress.<br>
+3. Auto Closetag - automatically create a close tag every time you start a new tag.<br>
+4. Suggestive Code (Key binded) - Suggests a list of possible tag or script on each code (works with CSS Only) (Key Button:<b>Ctrl)</b><br> 
+5. Export File - Export and save file as HTML and view your codes in any IDE.
+
+</p>
+ 
+</div>
+
+<div id="about" class="tabcontent">
+  <h3>Telepathy - The IDE for Web Learners</h3>
+  <p>
+    Version: 1.2.1<br>
+    Electron: 6.0.6<br>
+    NodeJs: 10.16.3<br>
+    Developed By: Michael Larry "Moose" Ancona<br>
+  Freeware<br>
+Email: ancona313@gmail.com</p>
+</div>
+
+<div class="clearfix"></div>
+
+<form>
+<center>
+<div class="button" onclick="window.location.href = 'load2.html';">
+    Get Started
+ </form>
+
+</div>
+</center>
+
+<script>
+function view(evt, cityName) {
+  var i, tabcontent, tablinks;
+  tabcontent = document.getElementsByClassName("tabcontent");
+  for (i = 0; i < tabcontent.length; i++) {
+    tabcontent[i].style.display = "none";
+  }
+  tablinks = document.getElementsByClassName("tablinks");
+  for (i = 0; i < tablinks.length; i++) {
+    tablinks[i].className = tablinks[i].className.replace(" active", "");
+  }
+  document.getElementById(cityName).style.display = "block";
+  evt.currentTarget.className += " active";
+}
+</script>
+
+
+
+
+
+</body>
+</html> 

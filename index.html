@@ -1,0 +1,180 @@
+<!doctype html>
+
+<head>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel=stylesheet href=style.css>
+</head>
+<title>Telepathy - A Real Time Live Editor for Web Learners</title>
+<body>
+
+<link rel=stylesheet href=lib/codemirror.css>
+<link rel=stylesheet href=theme/dracula.css>
+<script src="lib/codemirror.js"></script>
+<script src="mode/xml/xml.js"></script>
+<script src="mode/javascript/javascript.js"></script>
+<script src="mode/css/css.js"></script>
+<script src="addon/edit/closetag.js"></script>
+<script src="mode/htmlmixed/htmlmixed.js"></script>
+<script src="addon/hint/show-hint.js"></script>
+<script src="addon/hint/css-hint.js"></script>
+<script src="addon/hint/html-hint.js"></script>
+<script src="addon/edit/matchbrackets.js"></script>
+<link rel=stylesheet href="addon/hint/show-hint.css">
+
+<style type=text/css>
+
+      .CodeMirror {
+        padding-top:10px;
+        float: left;
+        font-family: 'Courier New', Courier, monospace;
+        width: 50%;
+       
+        resize: auto;
+      /*overflow: auto !important;
+      font-size: 18px;*/
+      height: 630px;
+      }
+      iframe {
+        width: 49%;
+        float: left;
+        height: 600px;
+     background: white;
+     border: none;
+     /*resize: horizontal;
+      overflow: auto !important;
+      */
+      }
+
+      button{
+
+        float: left;
+        display: block;
+        color:white;
+        text-align: center;
+        background: none;
+        padding: 6px 1px;
+        text-decoration: none;
+       
+       
+        margin-top: -1px;
+  border: none;
+        margin-left: 1px;
+        cursor: grab;
+
+      }
+
+      .header {
+  padding: 1px;
+  text-align: left;
+  background:steelblue;
+  color: white;
+  padding-left: 25px;
+  font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+  font-size: 100%;
+
+}
+
+
+
+/*body{
+        /*background-image: url("bg.jpg");
+     
+background-size:cover;
+
+      }*/
+    </style>
+
+
+<article>
+
+
+
+    <div class="header">
+      
+<div class = "button">
+  <button onclick="saveTextAsFile()"><img src = "export.png"></button>
+</div>
+<br><br>
+<div style = "float:right">
+<img src = "header.png">
+</div></div>
+    <textarea id=code name=code>
+<!DOCTYPE html>    
+<title>Telepathy</title>
+<meta name="viewport" 
+content="width=device-width, initial-scale=1">
+
+<body>
+    <div style = "text-align:center">
+    <div style = "padding-top:10%">
+    <h1>Hello World!</h1>
+    <img src="logo.png" alt="Telepathy" style="width:25%">
+    <p>This is your first webpage</p>
+    </div>
+    </div>
+  </body>
+    </html>  
+</textarea>
+
+    <iframe id=preview></iframe>
+    
+    <script>
+      var delay;
+      var editor = CodeMirror.fromTextArea(document.getElementById('code'), {
+        mode: 'htmlmixed',
+        theme: 'dracula',
+        lineNumbers: true,
+        autoCloseTags: true,
+        extraKeys: {"Ctrl": "autocomplete"
+  }
+ 
+  
+      });
+
+
+
+      editor.on("change", function() {
+        clearTimeout(delay);
+        delay = setTimeout(updatePreview, 300);
+      });
+      
+  
+  
+      function updatePreview() {
+        var previewFrame = document.getElementById('preview');
+        var preview =  previewFrame.contentDocument ||  previewFrame.contentWindow.document;
+        preview.open();
+        preview.write(editor.getValue());
+        preview.close();
+      }
+
+      setTimeout(updatePreview, 300);
+
+      function saveTextAsFile() {
+  var textToWrite = editor.getValue();
+  var textFileAsBlob = new Blob([textToWrite], {
+    type: "text/plain;charset=utf-8"
+  });
+  var fileNameToSaveAs = "mywebsite.html";
+
+  var downloadLink = document.createElement("a");
+  downloadLink.download = fileNameToSaveAs;
+  downloadLink.innerHTML = "Download File";
+  if (window.webkitURL != null) {
+   
+    downloadLink.href = window.webkitURL.createObjectURL(textFileAsBlob);
+  } else {
+    
+    downloadLink.href = window.URL.createObjectURL(textFileAsBlob);
+    downloadLink.onclick = destroyClickedElement;
+    downloadLink.style.display = "none";
+    document.body.appendChild(downloadLink);
+  }
+
+  downloadLink.click();
+}
+
+    </script>
+  </article>
+</body>
+</html>
