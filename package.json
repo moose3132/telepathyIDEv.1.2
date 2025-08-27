@@ -18,8 +18,8 @@
   "license": "Freeware",
   "devDependencies": {
     "electron": "^6.0.7",
-    "electron-packager": "^14.0.5",
-    "electron-winstaller": "^4.0.0"
+    "electron-packager": "^17.1.2",
+    "electron-winstaller": "^5.4.0"
   },
   "dependencies": {}
 }
